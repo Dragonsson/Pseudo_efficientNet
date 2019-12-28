@@ -25,7 +25,7 @@ class MBConvBlock(nn.Module):
 
     Attributes:
         has_se (bool): Whether the block contains a Squeeze and Excitation layer.
-        Squeeze and Excitation layer 将输出的，b,w,h,c,看作b,w,h,可以在前期将感受野放大到全图
+        Squeeze and Excitation layer
     """
 
     def __init__(self, block_args, global_params):
@@ -178,7 +178,6 @@ class EfficientNet(nn.Module):
         # Blocks
         for idx, block in enumerate(self._blocks):
             drop_connect_rate = self._global_params.drop_connect_rate
-            # 这里不清楚，0--drop_rate
             if drop_connect_rate:
                 drop_connect_rate *= float(idx) / len(self._blocks)
             x = block(x, drop_connect_rate=drop_connect_rate)
@@ -235,7 +234,6 @@ class EfficientNet(nn.Module):
         """ Validates model name. None that pretrained weights are only available for
         the first four models (efficientnet-b{i} for i in 0,1,2,3) at the moment. """
         num_models = 4 if also_need_pretrained_weights else 8
-        # pretrained 仅限于前四
         valid_models = ['efficientnet-b' + str(i) for i in range(num_models)]
         if model_name not in valid_models:
             raise ValueError('model_name should be one of: ' + ', '.join(valid_models))
