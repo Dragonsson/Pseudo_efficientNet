@@ -15,18 +15,18 @@ Pytorch--使用伪标签训练efficientNet模型
 *由于需要实时变更训练集，故选择重写Dataloader，根据每次训练结果重组并筛选DataFrame进行加载训练。
 *数据集目录层次需要如下：
     """
-    ├─train
-    │  ├─0
-    │  ├─1  
+    ├─train  
+    │  ├─0  
+    │  ├─1    
+    ...    
+    ├─val  
+    │  ├─0  
+    │  ├─1    
     ...  
-    ├─val
-    │  ├─0
-    │  ├─1  
-    ...
-    ├─pseudo
-    │  ├─0
-    │  ├─1  
-
+    ├─pseudo  
+    │  ├─0  
+    │  ├─1    
+  
     """ 其中0，1...为分类的目录，用于存放各个分类的图片
 * path_t_base，path_v_base，pseudo_path分别对应于train、val、pseudo的目录
 * 其中pseduo的目录，可以选择不进行分类
